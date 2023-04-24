@@ -6,11 +6,11 @@ export type GameQueryParams = AbstractQueryParams & {
   sortBy?: 'creationDate' | 'name';
 };
 
-export const findAllGames = async (params: GameQueryParams): Promise<GameDto> => {
-  const response = await apiClient.get<GameDto>('/games', { params });
+export const findAllGames = async (params: GameQueryParams): Promise<GameDto[]> => {
+  const response = await apiClient.get<GameDto[]>('/games', { params });
   return response.data;
 };
 
-export const useAllGames = (params: GameQueryParams = { sortBy: 'creationDate' }): UseQueryResult<GameDto> => {
-  return useQuery<GameDto>(['games', params], () => findAllGames(params));
+export const useAllGames = (params: GameQueryParams = { sortBy: 'creationDate' }): UseQueryResult<GameDto[]> => {
+  return useQuery<GameDto[]>(['games', params], () => findAllGames(params));
 };

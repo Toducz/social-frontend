@@ -1,5 +1,6 @@
 import { Global } from '@emotion/react';
-import { Container } from '@mui/material';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
@@ -7,8 +8,18 @@ import Frame from '../pages/appframe/Frame';
 import ForgetPassword from '../pages/auth/ForgetPassword';
 import SignIn from '../pages/auth/SignIn';
 import SignUp from '../pages/auth/SignUp';
-import Test from '../pages/test/Test';
+import GamesPage from '../pages/Game/GamesPage';
+import Settings from '../pages/settings/Settings';
+import { DefaultThemeProvider } from '../provider/DefaultThemeProvider';
 import { TitleProvider } from '../provider/TitleProvider';
+
+const defaultDarkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    // Other palette properties like primary, secondary, background, etc.
+  },
+  // Other theme properties like typography, spacing, etc.
+});
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -20,8 +31,11 @@ const queryClient = new QueryClient({
 });
 
 function App() {
+  const theme = useTheme();
+
+  console.log(theme);
   return (
-    <>
+    <DefaultThemeProvider>
       <Global
         styles={{
           '*': {
@@ -41,7 +55,8 @@ function App() {
                 <Route path="/signUp" element={<SignUp />} />
                 <Route path="/forgetPassword" element={<ForgetPassword />} />
                 <Route element={<Frame />}>
-                  <Route path="/test" element={<Test />} />
+                  <Route path="/settings" element={<Settings />} />
+                  <Route path="/test" element={<GamesPage />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/signIn" replace />} />
               </Routes>
@@ -50,7 +65,7 @@ function App() {
           </QueryClientProvider>
         </TitleProvider>
       </BrowserRouter>
-    </>
+    </DefaultThemeProvider>
   );
 }
 

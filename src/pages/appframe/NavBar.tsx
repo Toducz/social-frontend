@@ -4,9 +4,11 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/Inbox';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
 import Link from '@mui/material/Link';
 import { NavLink } from 'react-router-dom';
 import Box from '@mui/material/Box';
+import NavBarItem from './NavBarItem';
 
 type Props = {
   navbarIsOpen: boolean;
@@ -18,14 +20,9 @@ export default function NavBar({ navbarIsOpen, setNavbarIsOpen }: Props) {
     <Drawer anchor="left" open={navbarIsOpen} onClose={() => setNavbarIsOpen(false)}>
       <Box sx={{ mt: 8 }}>
         <List>
-          <Link component={NavLink} to="/profil">
-            <ListItem>
-              <ListItemIcon>
-                <InboxIcon />
-              </ListItemIcon>
-              <ListItemText primary="atasdasd" />
-            </ListItem>
-          </Link>
+          <NavBarItem text="All games" icon={<InboxIcon />} link="/test" />
+          <NavBarItem text="settings" icon={<SettingsApplicationsIcon />} link="settings" />
+          <NavBarItem text="Own games" icon={<InboxIcon />} link="ownGames" />
         </List>
       </Box>
     </Drawer>

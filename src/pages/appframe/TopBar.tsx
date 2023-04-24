@@ -25,7 +25,7 @@ export default function TopBar({ navbarIsOpen, setNavbarIsOpen }: Props) {
           <MenuIcon />
         </Button>
         <Button onClick={onLogout}>
-          <Typography color="black">LOGIN</Typography>
+          <Typography color="Menu">LOGIN</Typography>
         </Button>
       </SpaceBetweenBox>
     </AppBar>
