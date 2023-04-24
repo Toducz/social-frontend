@@ -56,7 +56,7 @@ function App() {
                 <Route path="/forgetPassword" element={<ForgetPassword />} />
                 <Route element={<Frame />}>
                   <Route path="/settings" element={<Settings />} />
-                  <Route path="/test" element={<GamesPage />} />
+                  <Route path="/games" element={<GamesPage />} />
                 </Route>
                 <Route path="*" element={<Navigate to="/signIn" replace />} />
               </Routes>

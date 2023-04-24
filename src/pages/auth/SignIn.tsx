@@ -25,7 +25,7 @@ export default function SignUp() {
     signInWithEmailAndPassword(getAuth(firebaseApp), loginRequest.email, loginRequest.password)
       .then((response) => {
         response.user.getIdToken().then((tokenId) => localStorage.setItem('token_id', tokenId));
-        navigate('/test');
+        navigate('/games');
       })
       .catch((error: FirebaseError) => {
         setCustomErrorMessage(error.code);
@@ -64,6 +64,7 @@ export default function SignUp() {
               <FormTextField
                 name="password"
                 label="password"
+                type="password"
                 control={control}
                 rules={{
                   required: true,

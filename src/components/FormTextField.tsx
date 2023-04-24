@@ -8,7 +8,7 @@ type Props<
   TFieldValues extends FieldValues = FieldValues,
   TName extends FieldPath<TFieldValues> = FieldPath<TFieldValues>,
 > = Omit<UseControllerProps<TFieldValues, TName>, 'render' | 'rules'> & {
-  type?: 'text' | 'number' | 'select';
+  type?: 'text' | 'number' | 'select' | 'password';
   label?: string;
   isLoading?: boolean;
   rows?: number;
