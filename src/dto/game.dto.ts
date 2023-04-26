@@ -6,5 +6,7 @@ export type GameDto = {
   description: string;
   ownerUserId: string;
   creationDate: string;
+  startDate: string;
+  endDate: string;
   actions: ActionDto[];
 };

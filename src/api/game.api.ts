@@ -4,6 +4,8 @@ import apiClient, { AbstractQueryParams } from './common';
 
 export type GameQueryParams = AbstractQueryParams & {
   sortBy?: 'creationDate' | 'name';
+  own?: boolean;
+  active?: boolean;
 };
 
 export const findAllGames = async (params: GameQueryParams): Promise<GameDto[]> => {

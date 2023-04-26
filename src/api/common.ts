@@ -4,8 +4,6 @@ import { baseApiUrl } from '../constans/constans';
 export type SortDirection = 'asc' | 'desc';
 
 export type AbstractQueryParams = {
-  page?: number;
-  size?: number;
   sortBy?: string;
   sortDirection?: SortDirection;
 };
