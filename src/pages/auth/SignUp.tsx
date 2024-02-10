@@ -6,29 +6,31 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
-import { FirebaseError } from 'firebase/app';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
+import { AxiosError } from 'axios';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { ErrorMessage } from '../../api/ErrorMessage';
+import { useCreateUser } from '../../api/user.api';
 import FormTextField from '../../components/FormTextField';
-import firebaseApp from '../../config/firebase.config';
-import { LoginRequestDto } from '../../dto/login.dto';
+import { UserRegistrationDto } from '../../dto/auth.dto';
 
 export default function SignUp() {
   const navigate = useNavigate();
-  const { control, handleSubmit } = useForm<LoginRequestDto>();
+  const { control, handleSubmit } = useForm<UserRegistrationDto>();
   const [customErrorMessage, setCustomErrorMessage] = useState('');
 
-  const onSubmitForm: SubmitHandler<LoginRequestDto> = (loginRequest) => {
-    createUserWithEmailAndPassword(getAuth(firebaseApp), loginRequest.email, loginRequest.password)
-      .then((response) => {
-        response.user.getIdToken().then((tokenId) => localStorage.setItem('token_id', tokenId));
-        navigate('/test');
-      })
-      .catch((error: FirebaseError) => {
-        setCustomErrorMessage(error.code);
-      });
+  const { mutate: createUser } = useCreateUser();
+
+  const onSubmitForm: SubmitHandler<UserRegistrationDto> = (userRegistration) => {
+    createUser(userRegistration, {
+      onSuccess: () => {
+        navigate('/signIn');
+      },
+      onError: (error: AxiosError<ErrorMessage>) => {
+        setCustomErrorMessage(error.message);
+      },
+    });
   };
 
   return (
@@ -48,7 +50,7 @@ export default function SignUp() {
           Sign up
         </Typography>
         <form onSubmit={handleSubmit(onSubmitForm)}>
-          <Box sx={{ mt: 1 }}>
+          <Box sx={{ mt: 1, display: 'flex', flexDirection: 'column', gap: 2 }}>
             <FormTextField
               name="email"
               label="email"
@@ -59,18 +61,39 @@ export default function SignUp() {
                 maxLength: 45,
               }}
             />
-            <Box sx={{ mt: 3 }}>
-              <FormTextField
-                name="password"
-                label="password"
-                control={control}
-                rules={{
-                  required: true,
-                  minLength: 2,
-                  maxLength: 45,
-                }}
-              />
-            </Box>
+
+            <FormTextField
+              name="displayName"
+              label="Display name"
+              control={control}
+              rules={{
+                required: true,
+                minLength: 2,
+                maxLength: 45,
+              }}
+            />
+
+            <FormTextField
+              name="phoneNumber"
+              label="Phone number"
+              type="number"
+              control={control}
+              rules={{
+                required: true,
+              }}
+            />
+
+            <FormTextField
+              name="password"
+              label="password"
+              control={control}
+              rules={{
+                required: true,
+                minLength: 2,
+                maxLength: 45,
+              }}
+            />
+
             {customErrorMessage.length > 0 && (
               <Alert severity="error" sx={{ mt: 1 }}>
                 {customErrorMessage}

@@ -1,0 +1,11 @@
+{
+  "version": "1.0.0",
+  "configurations": [
+    {
+      "name": "social-frontend",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "yarn run react-scripts start"
+    }
+  ]
+}

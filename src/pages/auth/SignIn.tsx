@@ -14,7 +14,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate, NavLink } from 'react-router-dom';
 import FormTextField from '../../components/FormTextField';
 import firebaseApp from '../../config/firebase.config';
-import { LoginRequestDto } from '../../dto/login.dto';
+import { LoginRequestDto } from '../../dto/auth.dto';
 
 export default function SignUp() {
   const navigate = useNavigate();
