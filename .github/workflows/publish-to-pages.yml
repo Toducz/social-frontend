@@ -67,7 +67,7 @@ jobs:
       - name: Deploy to GitHub Pages 🚀s
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.PAGES_DEPLOYMENT }}
+          github_token: ${{ secrets.PAGES_DEPLOYMENT }}
           publish_dir: ./build
       - name: Checkout 🛎️
         uses: actions/checkout@v3
