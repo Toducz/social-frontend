@@ -34,8 +34,6 @@ jobs:
         uses: borales/actions-yarn@v4
         with:
           cmd: install # will run `yarn install` command
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.PAGES_DEPLOYMENT }} # if needed
 
       - name: Build production bundle
         uses: borales/actions-yarn@v4
