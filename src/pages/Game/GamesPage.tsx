@@ -8,7 +8,7 @@ import useTitle from '../../hooks/useTitle';
 import GameCard from './GameCard';
 
 export default function GamesPage() {
-  useTitle('Games12');
+  useTitle('Games1234');
   const [gameQueryParams, setGameQueryParams] = useState<GameQueryParams>(undefined);
   const [filters, setFilters] = useState<string[]>([]);
   const { data: games } = useAllGames({ sortBy: 'creationDate', ...gameQueryParams });
