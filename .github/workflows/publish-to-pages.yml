@@ -57,7 +57,7 @@ jobs:
         run: ${{ steps.detect-package-manager.outputs.runner }} build
         env:
           CI: false
-          PUBLIC_URL: /game
+          PUBLIC_URL: /social-frontend
       - name: Upload artifact ⛱️
         uses: actions/upload-pages-artifact@v1
         with:
