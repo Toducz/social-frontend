@@ -53,15 +53,8 @@ jobs:
       - name: Install dependencies 🥑
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
 
-      - name: Build production bundle
-        uses: borales/actions-yarn@v4
-        with:
-          cmd: build
-
-      - name: Upload Build Artifact ⛱️
-        uses: actions/upload-artifact@v2
-        with:
-          path: ./build
+      - name: Build 🍄
+        run: ${{ steps.detect-package-manager.outputs.runner }} build
 
   deploy:
     runs-on: ubuntu-latest
