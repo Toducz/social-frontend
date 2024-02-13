@@ -48,12 +48,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "clean": "rimraf build",
-    "lint": "eslint --max-warnings 0 .",
-    "lint-fix": "eslint --max-warnings 0 --fix .",
-    "format": "prettier --write 'src/**/*.{ts,tsx,css,json}' --config ./.prettierrc.yml",
-    "ci": "yarn clean && yarn lint && yarn build"
+    "build": "react-scripts build"
   },
   "browserslist": {
     "production": [
