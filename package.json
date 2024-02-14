@@ -48,7 +48,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build"
+    "build": "react-scripts build",
+    "gh-pages:404": "cp build/index.html build/404.html"
   },
   "browserslist": {
     "production": [
