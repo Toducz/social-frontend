@@ -15,11 +15,14 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import FormTextField from '../../components/FormTextField';
 import firebaseApp from '../../config/firebase.config';
 import { LoginRequestDto } from '../../dto/auth.dto';
+import { useAllGames } from '../../api/game.api';
 
 export default function SignUp() {
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<LoginRequestDto>();
   const [customErrorMessage, setCustomErrorMessage] = useState('');
+
+  const { data } = useAllGames();
 
   const onSubmitForm: SubmitHandler<LoginRequestDto> = (loginRequest) => {
     signInWithEmailAndPassword(getAuth(firebaseApp), loginRequest.email, loginRequest.password)
