@@ -1,5 +1,3 @@
-export const baseApiUrl = 'http://localhost:8080/api';
-
 export const firebaseConfig = {
   apiKey: 'AIzaSyBSBAq8JTqvZbbF5mKc20tM5o9IvpqWFOY',
   authDomain: 'social-game-d2747.firebaseapp.com',

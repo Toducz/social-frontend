@@ -3,16 +3,14 @@ import { GameDto } from '../dto/game.dto';
 import apiClient, { AbstractQueryParams } from './common';
 
 export type GameQueryParams = AbstractQueryParams & {
-  sortBy?: 'creationDate' | 'name';
-  own?: boolean;
-  active?: boolean;
+  sortBy?: 'creationDate'
 };
 
-export const findAllGames = async (params: GameQueryParams): Promise<GameDto[]> => {
+export const findAllGames = async (params?: GameQueryParams): Promise<GameDto[]> => {
   const response = await apiClient.get<GameDto[]>('/games', { params });
   return response.data;
 };
 
-export const useAllGames = (params: GameQueryParams = { sortBy: 'creationDate' }): UseQueryResult<GameDto[]> => {
+export const useAllGames = (params?: GameQueryParams): UseQueryResult<GameDto[]> => {
   return useQuery<GameDto[]>(['games', params], () => findAllGames(params));
 };

@@ -1,46 +1,18 @@
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { Box, Link, ToggleButton, ToggleButtonGroup, Tooltip } from '@mui/material';
+import { Box, Link, Tooltip } from '@mui/material';
 import Grid from '@mui/material/Grid';
-import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { GameQueryParams, useAllGames } from '../../api/game.api';
+import { useAllGames } from '../../api/game.api';
 import useTitle from '../../hooks/useTitle';
 import GameCard from './GameCard';
 
 export default function GamesPage() {
   useTitle('Games1234');
-  const [gameQueryParams, setGameQueryParams] = useState<GameQueryParams>(undefined);
-  const [filters, setFilters] = useState<string[]>([]);
-  const { data: games } = useAllGames({ sortBy: 'creationDate', ...gameQueryParams });
-
-  const handleFilter = (event: React.MouseEvent<HTMLElement>, currentFilters: string[]) => {
-    setFilters(currentFilters);
-    const newGameQueryParam: GameQueryParams = {
-      own: false,
-      active: false,
-    };
-
-    if (currentFilters.includes('own')) {
-      newGameQueryParam.own = true;
-    }
-    if (currentFilters.includes('active')) {
-      newGameQueryParam.active = true;
-    }
-
-    setGameQueryParams(newGameQueryParam);
-  };
+  const { data: games } = useAllGames();
 
   return (
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-        <ToggleButtonGroup value={filters} onChange={handleFilter}>
-          <ToggleButton color="success" value="own">
-            Own
-          </ToggleButton>
-          <ToggleButton color="success" value="active">
-            Active
-          </ToggleButton>
-        </ToggleButtonGroup>
         <Tooltip title="Add new game">
           <Link component={NavLink} to="/games/newGame">
             <AddCircleOutlineIcon />

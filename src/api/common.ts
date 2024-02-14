@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { baseApiUrl } from '../constans/constans';
 
 export type SortDirection = 'asc' | 'desc';
 
@@ -8,8 +7,12 @@ export type AbstractQueryParams = {
   sortDirection?: SortDirection;
 };
 
+const baseApiUrl = process.env.REACT_APP_BASE_URL;
+
+console.log(baseApiUrl);
+
 const apiClient = axios.create({
-  baseURL: baseApiUrl,
+  baseURL: `${baseApiUrl}/api`,
 });
 
 // set header
