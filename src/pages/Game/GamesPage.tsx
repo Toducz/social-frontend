@@ -14,7 +14,7 @@ export default function GamesPage() {
     <>
       <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
         <Tooltip title="Add new game">
-          <Link component={NavLink} to="/games/newGame">
+          <Link component={NavLink} to="/games/createGame">
             <AddCircleOutlineIcon />
           </Link>
         </Tooltip>

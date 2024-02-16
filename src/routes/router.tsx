@@ -40,7 +40,7 @@ export const router = createBrowserRouter(
               element: <GamesPage />,
             },
             {
-              path: '/games/newGame',
+              path: '/games/createGame',
               element: <NewGame />,
             },
           ],

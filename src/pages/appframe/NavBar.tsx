@@ -17,7 +17,7 @@ export default function NavBar({ navbarIsOpen, setNavbarIsOpen }: Props) {
         <List>
           <NavBarItem text="All games" icon={<InboxIcon />} link="/games" />
           <NavBarItem text="settings" icon={<SettingsApplicationsIcon />} link="settings" />
-          <NavBarItem text="Own games" icon={<InboxIcon />} link="ownGames" />
+          <NavBarItem text="Own games" icon={<InboxIcon />} link="/games/createGame" />
         </List>
       </Box>
     </Drawer>
