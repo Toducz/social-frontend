@@ -7,3 +7,5 @@ export const firebaseConfig = {
   appId: '1:135347244914:web:b8ee200b532cd2a77157eb',
   measurementId: 'G-3K4YYXMFTS',
 };
+
+export const PUBLIC_URL = process.env.REACT_APP_PUBLIC_URL;

@@ -22,8 +22,6 @@ export default function SignUp() {
   const { control, handleSubmit } = useForm<LoginRequestDto>();
   const [customErrorMessage, setCustomErrorMessage] = useState('');
 
-  const { data } = useAllGames();
-
   const onSubmitForm: SubmitHandler<LoginRequestDto> = (loginRequest) => {
     signInWithEmailAndPassword(getAuth(firebaseApp), loginRequest.email, loginRequest.password)
       .then((response) => {
