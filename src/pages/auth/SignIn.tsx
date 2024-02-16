@@ -15,7 +15,6 @@ import { useNavigate, NavLink } from 'react-router-dom';
 import FormTextField from '../../components/FormTextField';
 import firebaseApp from '../../config/firebase.config';
 import { LoginRequestDto } from '../../dto/auth.dto';
-import { useAllGames } from '../../api/game.api';
 
 export default function SignUp() {
   const navigate = useNavigate();
@@ -30,6 +29,7 @@ export default function SignUp() {
       })
       .catch((error: FirebaseError) => {
         setCustomErrorMessage(error.code);
+        alert(error.message);
       });
   };
 
