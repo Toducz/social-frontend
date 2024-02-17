@@ -16,7 +16,7 @@ import FormTextField from '../../components/FormTextField';
 import firebaseApp from '../../config/firebase.config';
 import { LoginRequestDto } from '../../dto/auth.dto';
 
-export default function SignUp() {
+export default function SignIn() {
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm<LoginRequestDto>();
   const [customErrorMessage, setCustomErrorMessage] = useState('');
@@ -29,7 +29,6 @@ export default function SignUp() {
       })
       .catch((error: FirebaseError) => {
         setCustomErrorMessage(error.code);
-        alert(error.message);
       });
   };
 
@@ -84,10 +83,14 @@ export default function SignUp() {
               Sign In
             </Button>
 
+            <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
+              Facebook sign in
+            </Button>
+
             <Link component={NavLink} to="/forgetPassword">
               <Typography>Forgot password?</Typography>
             </Link>
-            <Link component={NavLink} to="/signup">
+            <Link component={NavLink} to="/signUp">
               <Typography>Dont have an account? Sign Up</Typography>
             </Link>
           </Box>

@@ -4,8 +4,8 @@ import GamesPage from '../pages/Game/GamesPage';
 import NewGame from '../pages/Game/NewGame';
 import PageLayout from '../pages/appframe/PageLayout';
 import ForgetPassword from '../pages/auth/ForgetPassword';
-import SignIn from '../pages/auth/SignIn';
 import SignUp from '../pages/auth/SignUp';
+import SignIn from '../pages/auth/SignIn';
 import ErrorPage from '../pages/error/ErrorPage';
 import Settings from '../pages/settings/Settings';
 
