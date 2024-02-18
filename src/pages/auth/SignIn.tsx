@@ -1,3 +1,4 @@
+/* eslint-disable func-names */
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 
 import Alert from '@mui/material/Alert';
@@ -7,11 +8,13 @@ import Button from '@mui/material/Button';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
 import Typography from '@mui/material/Typography';
+import { GoogleLogin } from '@react-oauth/google';
 import { FirebaseError } from 'firebase/app';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { jwtDecode } from 'jwt-decode';
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useNavigate, NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import FormTextField from '../../components/FormTextField';
 import firebaseApp from '../../config/firebase.config';
 import { LoginRequestDto } from '../../dto/auth.dto';
@@ -78,14 +81,22 @@ export default function SignIn() {
                 {customErrorMessage}
               </Alert>
             )}
-
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Sign In
             </Button>
-
             <Button type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
               Facebook sign in
             </Button>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                console.log(credentialResponse);
+                const credentialResponseDecoded = jwtDecode(credentialResponse.credential);
+                console.log(credentialResponseDecoded);
+              }}
+              onError={() => {
+                console.log('Login Failed');
+              }}
+            />
 
             <Link component={NavLink} to="/forgetPassword">
               <Typography>Forgot password?</Typography>
